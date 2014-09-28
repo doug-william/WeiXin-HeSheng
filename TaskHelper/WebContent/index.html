@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" /> 
+	<title>TaskHelper Home</title>
+	
+	<script>
+	var x=document.getElementById("demo");
+	function getLocation()
+  	{
+  		if (navigator.geolocation)
+    	{
+    		navigator.geolocation.getCurrentPosition(showPosition);
+    	}
+  		else{x.innerHTML="Geolocation is not supported by this browser.";}
+  	}
+	
+	function showPosition(position)
+  	{
+  		x.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;	
+  	}
+	
+</script>
+	
+	
+</head>
+<body>
+	<h3>This is a taskHelper page. V_20140213_00:10</h3>
+	<p>地址：<a href="http://api.map.baidu.com/staticimage?width=800&height=1000&markers=北京市海淀区复兴路99号|上海市金沙江路3131号&markerStyles=l,A|l,B">上海市金沙江路3131号</a></p>
+	<br/>
+	<label>播放：</label>
+	<audio src="http://bcs.duapp.com/recorder/11.ogg" controls="controls">
+	</audio>
+	
+	<p id="demo">点击这个按钮，获得您的坐标：</p>
+<button onclick="getLocation()">试一下</button>
+
+	
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+<script language="javascript">
+var access_token;
+var queryString = location.href;
+var pos = queryString.indexOf("/taskhelperservice.html");
+var urlpart=queryString.substr(0, pos);
+
+function queryToken(){
+var url =urlpart + "/queryToken?appid=WXApp&apppwd=123456&param="+Math.random();
+$.get(url, {Action:"get",Name:"TestQueryToken"}, function (data, textStatus){
+	var dataObj=eval("("+data+")");
+	if (dataObj["access_token"]==null)
+		access_token = null;
+	else
+		access_token = dataObj["access_token"];
+	if (access_token==null)
+		$('#labelAccessToken').html('null');
+	else
+		$('#labelAccessToken').html(access_token);
+	$('#labelAccessTokenUpdateTime').html(new Date());
+});
+}
+
+function checkUser(){
+var url =urlpart + "/checkUser?access_token=" + access_token +"&openid="+$('#idOpenID').val();
+url+="&cardno=CARDNO&username="+$('#idLoginID').val();
+url+="&userpwd="+$('#idLoginPwd').val()+"&param="+Math.random();
+$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+	alert(data);
+});
+}
+
+function login(){
+	var url=urlpart+"/login?access_token=" + access_token +"&openid=openID&logintime=";	
+	var myDate = new Date();
+	url += myDate.getFullYear() + "-";
+	url += myDate.getMonth() + 1;
+	url += "-" + myDate.getDate() + " ";
+	url += myDate.getHours() + ":";
+	url	+= myDate.getMinutes() + ":";
+	url	+= myDate.getSeconds();
+	url += "&location=329,239&loginmode=login&param="+Math.random();
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function logout(){
+	var url=urlpart+"/login?access_token=" + access_token +"&openid=openID&logintime=";	
+	var myDate = new Date();
+	url += myDate.getFullYear() + "-";
+	url += myDate.getMonth() + 1;
+	url += "-" + myDate.getDate() + " ";
+	url += myDate.getHours() + ":";
+	url	+= myDate.getMinutes() + ":";
+	url	+= myDate.getSeconds();
+	url += "&location=329,239&loginmode=logout&param="+Math.random();
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function querylog(){
+	var url=urlpart+"/queryLog?access_token=" + access_token +"&openid=openID&startdate=";	
+	var myDate = new Date();
+	url += myDate.getFullYear() + "-";
+	url += myDate.getMonth() + 1;
+	url += "-" + myDate.getDate() + " ";
+	url += myDate.getHours() + ":";
+	url	+= myDate.getMinutes() + ":";
+	url	+= myDate.getSeconds();
+	url += "&enddate=";
+	url += myDate.getFullYear() + "-";
+	url += myDate.getMonth() + 1;
+	url += "-" + myDate.getDate() + " ";
+	url += myDate.getHours() + ":";
+	url	+= myDate.getMinutes() + ":";
+	url	+= myDate.getSeconds()+"&param="+Math.random();	
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function queryemployeeinfo(){
+	var url=urlpart+"/queryEmployeeInfo?access_token=" + access_token +"&openid=openID&param="+Math.random();	
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function querycustomers(){
+	var url=urlpart+"/queryCustomers?access_token=" + access_token +"&openid=o8dWJt9LrQ3uzwqzyTHbnA9ifLKg&param="+Math.random();	
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function querybrands(){
+	var url=urlpart+"/queryBrands?access_token=" + access_token +"&openid=o8dWJt9LrQ3uzwqzyTHbnA9ifLKg"+"&customername=LVMH P&C&param="+Math.random();
+	//url=URLencode(url);
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function queryCalls(){
+	var url=urlpart+"/queryCalls?access_token=" + access_token +"&openid=o8dWJt9lCNgtyrQCx8pUjUXBtuQ4&customername=&brandname=&state=wait,finished&group=false&param="+Math.random();
+	//url=URLencode(url);
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function queryActiveCall(){
+	var url=urlpart+"/queryActiveCall?access_token=" + access_token +"&openid=o8dWJt9lCNgtyrQCx8pUjUXBtuQ4&param="+Math.random();
+	//url=URLencode(url);
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+
+function queryStats(){
+	var url=urlpart+"/queryStats?access_token=" + access_token +"&openid=o8dWJt9lCNgtyrQCx8pUjUXBtuQ4&startdate=2014-04-26&enddate=2014-04-29&param="+Math.random();
+	$.get(url, {Action:"get",Name:"lulu"}, function (data, textStatus){
+		alert(data);
+	});
+}
+</script>
+<label>access token:</label><label id='labelAccessToken'>null</label><label id='labelAccessTokenUpdateTime' style='margin:30px'></label><BR>
+<lable>微信号</lable><input id='idOpenID' value='o8dWJt9lCNgtyrQCx8pUjUXBtuQ4'></input><lable>用户名</lable><input id='idLoginID' value='jack'></input><lable>密码</lable><input id='idLoginPwd'></input>
+<BR>
+<button onClick="checkUser();">Get Trunk Group Info</button>
+<button onClick="queryToken();">Query Token</button>
+<button onClick="login();">上班</button>
+<button onClick="logout();">下班</button>
+<button onClick="querylog();">查询上班记录</button>
+<button onClick="queryemployeeinfo();">查询工程师信息</button>
+<button onClick="querycustomers();">查询所有客户名称</button>
+<button onClick="querybrands();">查询客户所有品牌名称</button>
+<BR>
+<button onClick="queryCalls();">Get Calls Info</button>
+<button onClick="queryActiveCall();">查询当前正在处理</button>
+<button onClick="queryStats();">查询工单统计</button>
+</body>
+</html>

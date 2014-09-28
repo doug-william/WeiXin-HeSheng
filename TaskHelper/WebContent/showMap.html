@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0," name="viewport" /> 
+	<title>位置信息</title>
+	
+	<script>
+	
+		function loadImage(){
+			// alert("LoadImage")
+			
+			var queryString = location.href.substring(location.href.indexOf("?")+1);
+			// alert(queryString);
+		    var parameters = queryString.split("&");
+		    
+			var param1 = parameters[0];
+			var addr = param1.split("=");
+			var address = addr[1];
+			
+			// alert(address);
+			
+			var image = document.getElementById("imgMap"); 
+			
+			var imgUrl = "http://api.map.baidu.com/staticimage?width=1000&height=800&markers="+address+"&zoom=14&markerStyles=m,A,0xff0000";
+			// alert(imgUrl);
+			image.src = imgUrl;
+			// image.src = "http://api.map.baidu.com/staticimage?width=1000&height=800&markers="+address+"&zoom=15&markerStyles=m,A,0xff0000";
+			
+		}
+		
+	</script>
+	
+	
+</head>
+<body onload="loadImage()">
+	
+	<div id="imgDiv" style="width:1000px;height:800px;border:#ccc solid 1px;">
+	
+		<img id="imgMap" style="margin:2px" width="1000" height="800" src="" />
+	
+    </div>
+	
+</body>
+</html>
